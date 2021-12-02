@@ -40,8 +40,8 @@ public class ProtoSerialization {
 
         byte[] addressBookBytesSerialized = Files.readAllBytes(Path.of("address_book"));
 
-        AddressBook addressBookSerialized = AddressBook.parseFrom(addressBookBytesSerialized);
-        System.out.println(addressBookSerialized);
+        AddressBook addressBookDeserialized = AddressBook.parseFrom(addressBookBytesSerialized);
+        System.out.println(addressBookDeserialized);
         System.out.println("Proto byte[]: " + addressBookBytesSerialized.length + " elements");
 
 
@@ -62,6 +62,8 @@ public class ProtoSerialization {
 
         byte[] addressBookJsonSerialized = mapper.writeValueAsBytes(addressBookJson);
         Files.write(Path.of(("address_book_json")), addressBookBytesSerialized);
+
+        AddressBookJson addressBookJsonDeserialized = mapper.readValue(addressBookJsonSerialized, AddressBookJson.class);
         System.out.println("Json byte[]: "+ addressBookJsonSerialized.length + " elements");
     }
 

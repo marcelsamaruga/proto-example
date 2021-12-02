@@ -57,8 +57,8 @@ public class PerformanceComparison {
     private static Supplier<AddressBook> protoConsumer()  {
         return () -> {
             AddressBook addressBook = buildAddressBookProto();
-            byte[] addressBookSerialized = addressBook.toByteArray();
             try {
+                byte[] addressBookSerialized = addressBook.toByteArray();
                 AddressBook.parseFrom(addressBookSerialized);
             } catch (InvalidProtocolBufferException e) {
                 e.printStackTrace();
